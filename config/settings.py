@@ -23,6 +23,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -32,8 +33,10 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'rest_framework',
     'rosetta',
     'parler',
+    
 ]
 
 LOCAL_APPS = [
@@ -123,6 +126,7 @@ USE_TZ = True
 LANGUAGES = (
     ('en', _('English')),
     ('fr', _('French')),
+    ('ar', _('Arabic')),
     ('es', _('Spanish')),
 )
 
@@ -134,13 +138,18 @@ PARLER_LANGUAGES = {
     None: (
         {'code': 'en',}, # English
         {'code': 'fr',}, # French
+        {'code': 'ar',}, # Arabic
         {'code': 'es',}, # Spanish
     ),
     'default': {
-        'fallbacks': ['en'],
+        'fallbacks': ['fr'],
         'hide_untranslated': False,
     }
 }
+PARLER_DEFAULT_LANGUAGE_CODE = 'fr'
+
+MODELTRANSLATION_LANGUAGES = ('en', 'fr', 'ar', 'es')
+# MODELTRANSLATION_FALLBACK_LANGUAGES = ('fr',)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -151,3 +160,7 @@ MEDIA_URL = '/mediafiles/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+REST_FRAMEWORK = {
+    
+}
